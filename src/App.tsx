@@ -75,6 +75,7 @@ export default function App() {
   return (
     <div style={{ padding: '1rem', maxWidth: '1000px', margin: 'auto' }}>
       <h1 style={{ textAlign: 'center' }}>🧮 משחק התאמת שברים: בנים נגד בנות</h1>
+      <h1 style={{ textAlign: 'center' }}>פותח על ידי נעם איתי ואייסון איתי ללימוד שברים לכיתה  ה2 </h1>
       <p style={{ textAlign: 'center' }}>👉 תור של <strong>{team}</strong>!</p>
       <p style={{ textAlign: 'center' }}>בנות: {score.בנות} | בנים: {score.בנים}</p>
 
