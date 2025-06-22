@@ -1,6 +1,6 @@
 .card-container {
-  width: 6rem;
-  height: 8rem;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   perspective: 1000px;
 }
 
@@ -25,13 +25,14 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   border-radius: 0.5rem;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   text-align: center;
   background-color: white;
   padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 /* Back is shown by default */
@@ -47,6 +48,7 @@
   transform: rotateY(180deg);
 }
 
+/* Pulse animation for feedback (optional use) */
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
@@ -56,5 +58,13 @@
   }
   100% {
     box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Responsive grid container can be used if needed */
+@media (max-width: 600px) {
+  .card-face {
+    font-size: 0.9rem;
+    padding: 0.4rem;
   }
 }
