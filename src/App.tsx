@@ -1,4 +1,4 @@
-
+import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
 import { fractionCards } from './data/fractionPairs';
 import type { FractionCard } from './data/fractionPairs';
