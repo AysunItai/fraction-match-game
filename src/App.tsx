@@ -40,7 +40,7 @@ export default function App() {
           setMatched(prev => [...prev, firstId, secondId]);
           setScore(prev => ({ ...prev, [team]: prev[team] + 1 }));
           setFlipped([]);
-          setTeam(team === 'בנות' ? 'בנים' : 'בנות'); // תמיד החלף תור
+          setTeam(team === 'בנות' ? 'בנים' : 'בנות');
         }, 600);
       } else {
         setTimeout(() => {
@@ -73,80 +73,88 @@ export default function App() {
   const isGameOver = matched.length === shuffled.length;
 
   return (
-    <div style={{ padding: '1rem', maxWidth: '600px', margin: 'auto' }}>
+    <div style={{ padding: '1rem', maxWidth: '1000px', margin: 'auto' }}>
       <h1 style={{ textAlign: 'center' }}>🧮 משחק התאמת שברים: בנים נגד בנות</h1>
       <p style={{ textAlign: 'center' }}>👉 תור של <strong>{team}</strong>!</p>
       <p style={{ textAlign: 'center' }}>בנות: {score.בנות} | בנים: {score.בנים}</p>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gridGap: '2rem 1rem',
-          marginTop: '1rem',
-        }}
-      >
-        {shuffled.map(card => (
-          <Card
-            key={card.id}
-            content={card.content}
-            isFlipped={flipped.includes(card.id) || matched.includes(card.id)}
-            isMatched={matched.includes(card.id)}
-            onClick={() => handleCardClick(card.id)}
-          />
-        ))}
-      </div>
-
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '2rem', marginTop: '1rem' }}>
+        {/* Button Panel */}
         {flippedSpecialCard && (
   <div style={{
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '0.5rem'
+    position: 'absolute',
+    left: '10rem',
+    top: '12rem', // adjust as needed
+    zIndex: 1000,
+    backgroundColor: '#fff',
+    padding: '1rem',
+    border: '2px solid #ccc',
+    borderRadius: '10px',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
   }}>
     <p style={{ marginBottom: '0.5rem' }}>
       האם <strong>{team}</strong> הסבירו נכון?
     </p>
-    <div style={{
-      display: 'flex',
-      gap: '1rem'
-    }}>
-      <button
-        onClick={handleManualPoint}
-        style={{
-          padding: '0.5rem 1rem',
-          backgroundColor: '#4CAF50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold'
-        }}
-      >
-        ✅ תנו נקודה ל<strong>{team}</strong>
-      </button>
-      <button
-        onClick={() => {
-          setFlipped([]);
-          setTeam(team === 'בנות' ? 'בנים' : 'בנות');
-        }}
-        style={{
-          padding: '0.5rem 1rem',
-          backgroundColor: '#f44336',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold'
-        }}
-      >
-        ❌ ללא נקודה
-      </button>
-    </div>
+    <button
+      onClick={handleManualPoint}
+      style={{
+        display: 'block',
+        marginBottom: '0.5rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        width: '100%'
+      }}
+    >
+      ✅ תנו נקודה ל<strong>{team}</strong>
+    </button>
+    <button
+      onClick={() => {
+        setFlipped([]);
+        setTeam(team === 'בנות' ? 'בנים' : 'בנות');
+      }}
+      style={{
+        display: 'block',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#f44336',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        width: '100%'
+      }}
+    >
+      ❌ ללא נקודה
+    </button>
   </div>
 )}
 
 
+        {/* Card Grid */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridGap: '2rem 1rem',
+            flexGrow: 1
+          }}
+        >
+          {shuffled.map(card => (
+            <Card
+              key={card.id}
+              content={card.content}
+              isFlipped={flipped.includes(card.id) || matched.includes(card.id)}
+              isMatched={matched.includes(card.id)}
+              onClick={() => handleCardClick(card.id)}
+            />
+          ))}
+        </div>
+      </div>
 
       {isGameOver && (
         <div style={{
