@@ -75,65 +75,75 @@ export default function App() {
   return (
     <div style={{ padding: '1rem', margin: 'auto', maxWidth: '1000px' }}>
       <h1 style={{ textAlign: 'center' }}>🧮 משחק התאמת שברים: בנים נגד בנות</h1>
-      <h1 style={{ textAlign: 'center' }}>פותח על ידי נעם איתי ואייסון איתי ללימוד שברים לכיתה ה‎2</h1>
+      <h1 style={{ textAlign: 'center', fontSize: '1.3rem' }}>פותח על ידי נעם איתי ואייסון איתי ללימוד שברים לכיתה ה‎2</h1>
       <p style={{ textAlign: 'center' }}>👉 תור של <strong>{team}</strong>!</p>
-      <p style={{ textAlign: 'center' }}>בנות: {score.בנות} | בנים: {score.בנים}</p>
+    <p style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+  <span style={{ color: '#e91e63', fontWeight: 'bold' }}>בנות: {score.בנות}</span> |{' '}
+  <span style={{ color: '#2196f3', fontWeight: 'bold' }}>בנים: {score.בנים}</span>
+</p>
+
 
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
         {/* Side Panel */}
         {flippedSpecialCard && (
-          <div style={{
-            minWidth: '200px',
-            padding: '1rem',
-            backgroundColor: '#fff',
-            border: '2px solid #ccc',
-            borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
-            marginTop: '1rem'
-          }}>
-            <p style={{ marginBottom: '0.5rem' }}>האם <strong>{team}</strong> הסבירו נכון?</p>
-            <button
-              onClick={handleManualPoint}
-              style={{
-                marginBottom: '0.5rem',
-                padding: '0.5rem 1rem',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                width: '100%'
-              }}
-            >
-              ✅ תנו נקודה ל<strong>{team}</strong>
-            </button>
-            <button
-              onClick={() => {
-                setFlipped([]);
-                setTeam(team === 'בנות' ? 'בנים' : 'בנות');
-              }}
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#f44336',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                width: '100%'
-              }}
-            >
-              ❌ ללא נקודה
-            </button>
-          </div>
-        )}
+  <div style={{
+    position: 'absolute',
+    top: '6rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    backgroundColor: '#fff',
+    padding: '1rem',
+    border: '2px solid #ccc',
+    borderRadius: '10px',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+    zIndex: 1000,
+    width: '300px',
+    textAlign: 'center'
+  }}>
+    <p style={{ marginBottom: '0.5rem' }}>האם <strong>{team}</strong> הסבירו נכון?</p>
+    <button
+      onClick={handleManualPoint}
+      style={{
+        marginBottom: '0.5rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        width: '100%'
+      }}
+    >
+      ✅ תנו נקודה ל<strong>{team}</strong>
+    </button>
+    <button
+      onClick={() => {
+        setFlipped([]);
+        setTeam(team === 'בנות' ? 'בנים' : 'בנות');
+      }}
+      style={{
+        padding: '0.5rem 1rem',
+        backgroundColor: '#f44336',
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        width: '100%'
+      }}
+    >
+      ❌ ללא נקודה
+    </button>
+  </div>
+)}
+
 
         {/* Card Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
             gap: '1rem',
             flexGrow: 1
           }}
